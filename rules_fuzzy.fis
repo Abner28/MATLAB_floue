@@ -1,0 +1,44 @@
+[System]
+Name='rules_fuzzy'
+Type='mamdani'
+Version=2.0
+NumInputs=2
+NumOutputs=1
+NumRules=6
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='theta_pert'
+Range=[-0.26 0.26]
+NumMFs=2
+MF1='negative':'trapmf',[-0.455 -0.282 -0.0923467230443975 0.0523]
+MF2='positive':'trapmf',[-0.0526 0.087 0.3 0.64]
+
+[Input2]
+Name='theta0'
+Range=[-0.26 0.26]
+NumMFs=3
+MF1='negative':'trapmf',[-0.325 -0.293 -0.0868 -0.0100231303006938]
+MF2='ok':'trapmf',[-0.0319 -0.00879 0.0224518118735544 0.0363]
+MF3='positive':'trapmf',[0.0136314572089438 0.0868 0.282 0.455]
+
+[Output1]
+Name='thetaOut'
+Range=[0 0.26]
+NumMFs=4
+MF1='nul':'trimf',[-0.108 -0.00055 0.00192389006342493]
+MF2='faible':'trimf',[0.0684274841437632 0.0767274841437632 0.0800274841437632]
+MF3='moyen':'trimf',[0.147139534883721 0.152139534883721 0.160139534883721]
+MF4='fort':'trimf',[0.244334038054968 0.259 0.29]
+
+[Rules]
+1 1, 4 (1) : 1
+1 2, 3 (1) : 1
+1 3, 1 (1) : 1
+2 1, 1 (1) : 1
+2 2, 3 (1) : 1
+2 3, 4 (1) : 1
